@@ -10,17 +10,18 @@ def add(work,allocation):
     for k in range(len(work)):
         work[k]=work[k]+allocation[k]
 
+#input number of processes and no. of resources
 n=int(input('enter the number of processes'))
 m=int(input('enter the number of resources'))
 
+#I know I could've done this in a single line but I didn't know then.
 allocationbuffer=[];maxbuffer=[];needbuffer=[]
 allocation=[];maximum=[];need=[]
 available=[]; work=[];safesequence=[];
 
 finish=[0 for i in range(n)] 
 
-'''I've used this method to input into multidimensional list because I didn't
-know any other way'''
+#I've used this method to input into multidimensional list because I didn't know any other way
 
 for process in range(n):
     allocationbuffer=[];maxbuffer=[];needbuffer=[]
@@ -40,6 +41,7 @@ for i in range(m):
     available.append(int(input('enter available')))
 print available
 
+#printing in a tabular format, here I'm using the number of resources(m) to calculate appropriate spacing
 print 'allocation\tmaximum\t\tneed'
 for process in range(n):
     print allocation[process],'\t'*(4/m),maximum[process],'\t'*(4/m),need[process]
@@ -47,6 +49,7 @@ for process in range(n):
 work=available
 print 'work: ',work
 
+#Running the loop utill all processes have been finished
 while 0 in finish:
     condition =True
     for i in range(n):                
@@ -56,6 +59,7 @@ while 0 in finish:
 
 print 'finishing order: ',finish
 
+#calculating the sequence in which the process got finished
 for i in range(1,max(finish)+1):
     safesequence.append(finish.index(i))
 
